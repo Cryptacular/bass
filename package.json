@@ -2,7 +2,7 @@
   "name": "bass",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bass.js",
   "author": "Nick Mertens <nick@thecrypt.co.nz>",
   "scripts": {
     "start": "concurrently 'yarn watch' 'yarn test-watch'",
@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^22.2.2",
+    "concurrently": "^3.5.1",
     "jest": "^22.4.3",
     "prettier": "1.11.1",
     "ts-jest": "^22.4.2",

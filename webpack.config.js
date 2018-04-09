@@ -1,30 +1,34 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: './src/bass.ts',
-  devtool: 'inline-source-map',
+  entry: {
+    bass: "./src/index.ts",
+    "examples/basic": "./src/examples/basic"
+  },
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
+        enforce: "pre",
+        loader: "tslint-loader",
+        exclude: /src\/polyfills/,
         options: {
-          tsConfigFile: 'tsconfig.json'
+          tsConfigFile: "tsconfig.json"
         }
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: [".tsx", ".ts", ".js"]
   },
   output: {
-    filename: 'bass.bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist")
   }
 };
