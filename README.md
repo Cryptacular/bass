@@ -1,5 +1,7 @@
 # Bass JS Framework
 
+[![Build Status](https://travis-ci.org/Cryptacular/bass.svg?branch=master)](https://travis-ci.org/Cryptacular/bass)
+
 ```
                          __{_}___{_}_
 ------------------------\---/     /  \
