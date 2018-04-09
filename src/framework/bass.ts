@@ -19,8 +19,16 @@ export default class Bass {
     this.parseTemplate();
   }
 
+  public getRoot(): HTMLElement {
+    return this.root;
+  }
+
+  public getBoundElements(): HTMLElement[] {
+    return [...this.boundElements];
+  }
+
   public parseTemplate() {
-    const children = Array.from<HTMLElement>(this.root.children);
+    const children = this.getBassChildren(Array.from(this.root.children));
     const bassChildren = children.filter((c: HTMLElement) => {
       const bassAttributes = Array.from(c.attributes).filter(
         (x: Attr) => x.name.indexOf("bass-") === 0
@@ -28,5 +36,16 @@ export default class Bass {
       return bassAttributes.length > 0;
     });
     this.boundElements = bassChildren;
+  }
+
+  private getBassChildren(elements: HTMLElement[]): HTMLElement[] {
+    const out: HTMLElement[] = [];
+    elements.forEach(e => {
+      const add = e.hasChildNodes()
+        ? this.getBassChildren(Array.from(e.children))
+        : [e];
+      out.push(...add);
+    });
+    return out;
   }
 }
