@@ -1,4 +1,5 @@
 import Bass, { IBassOptions } from "./bass";
+import { TextBinding } from "./bindings";
 
 describe("Bass", () => {
   test("exists", () => {
@@ -46,12 +47,12 @@ describe("Bass", () => {
 
       const bass = new Bass(options);
 
-      expect(() => bass.parseTemplate()).not.toThrow;
+      expect(() => bass.parseTemplate()).not.toThrow();
     });
 
     test("finds immediate child nodes with Bass attributes", () => {
       document.body.innerHTML = `<div id="app">
-        <span bass-test="this is a test!"></span>
+        <span bass-text="this is a test!"></span>
       </div>`;
 
       const options: IBassOptions = {
@@ -61,18 +62,15 @@ describe("Bass", () => {
       const bass = new Bass(options);
       bass.parseTemplate();
 
-      const boundElements = bass.getBoundElements();
+      const bindings = bass.getBindings();
 
-      expect(boundElements.length).toEqual(1);
-      expect(boundElements[0]).toEqual(
-        document.getElementsByTagName("span")[0]
-      );
+      expect(bindings.length).toEqual(1);
     });
 
     test("finds nested child nodes with Bass attributes", () => {
       document.body.innerHTML = `<div id="app">
         <div>
-          <span bass-test="this is a test!"></span>
+          <span bass-text="this is a test!"></span>
         </div>
       </div>`;
 
@@ -83,12 +81,9 @@ describe("Bass", () => {
       const bass = new Bass(options);
       bass.parseTemplate();
 
-      const boundElements = bass.getBoundElements();
+      const bindings = bass.getBindings();
 
-      expect(boundElements.length).toEqual(1);
-      expect(boundElements[0]).toEqual(
-        document.getElementsByTagName("span")[0]
-      );
+      expect(bindings.length).toEqual(1);
     });
   });
 
@@ -103,38 +98,6 @@ describe("Bass", () => {
       const bass = new Bass(options);
 
       expect(bass.getRoot()).toEqual(document.getElementById("app"));
-    });
-  });
-
-  describe("getBoundElements", () => {
-    test("returns empty array when no bound elements", () => {
-      document.body.innerHTML = `<div id="app"></div>`;
-
-      const options: IBassOptions = {
-        root: "app"
-      };
-
-      const bass = new Bass(options);
-
-      expect(bass.getBoundElements()).toEqual([]);
-    });
-
-    test("returns array of bound elements", () => {
-      document.body.innerHTML = `<div id="app">
-        <div>
-          <span bass-test="this is a test!"></span>
-        </div>
-      </div>`;
-
-      const options: IBassOptions = {
-        root: "app"
-      };
-
-      const bass = new Bass(options);
-
-      expect(bass.getBoundElements()).toEqual(
-        Array.from(document.getElementsByTagName("span"))
-      );
     });
   });
 });

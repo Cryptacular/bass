@@ -1,10 +1,12 @@
+import { BindingFactory, IBinding } from "./bindings/index";
+
 export interface IBassOptions {
   root: string;
 }
 
 export default class Bass {
   private root: HTMLElement;
-  private boundElements: HTMLElement[];
+  private bindings: IBinding[];
 
   constructor(options: IBassOptions) {
     if (!options || !options.root || options.root.length <= 0) {
@@ -23,8 +25,8 @@ export default class Bass {
     return this.root;
   }
 
-  public getBoundElements(): HTMLElement[] {
-    return [...this.boundElements];
+  public getBindings(): IBinding[] {
+    return this.bindings;
   }
 
   public parseTemplate() {
@@ -35,7 +37,23 @@ export default class Bass {
       );
       return bassAttributes.length > 0;
     });
-    this.boundElements = bassChildren;
+    this.parseBindings(bassChildren);
+  }
+
+  private parseBindings(elements: HTMLElement[]) {
+    const bindings: IBinding[] = [];
+    elements.forEach(e => {
+      const bassAttributes = Array.from<Attr>(e.attributes).filter(
+        (x: Attr) => x.name.indexOf("bass-") === 0
+      );
+      bassAttributes.forEach(a => {
+        bindings.push(
+          BindingFactory.getBinding(a.name, { root: e, value: a.value })
+        );
+      });
+    });
+
+    this.bindings = bindings;
   }
 
   private getBassChildren(elements: HTMLElement[]): HTMLElement[] {
