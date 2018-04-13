@@ -1,6 +1,6 @@
 import { IBindingOptions, TextBinding } from ".";
 
-describe("Binding", () => {
+describe("TextBinding", () => {
   it("exists", () => {
     expect(TextBinding).toBeDefined();
   });

@@ -66,9 +66,10 @@ export default class Bass {
   private getBassChildren(elements: HTMLElement[]): HTMLElement[] {
     const out: HTMLElement[] = [];
     elements.forEach(e => {
-      const add = e.hasChildNodes()
-        ? this.getBassChildren(Array.from(e.children))
-        : [e];
+      const add =
+        e.childElementCount > 0
+          ? this.getBassChildren(Array.from(e.children))
+          : [e];
       out.push(...add);
     });
     return out;

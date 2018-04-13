@@ -9,6 +9,7 @@ export interface IProperties {
 }
 
 export interface IBinding {
+  getProperties(): IProperties;
   getRoot(): HTMLElement;
   get(): any;
   render(): void;
@@ -34,11 +35,15 @@ export class Binding implements IBinding {
     return this.root;
   }
 
+  public getProperties() {
+    return this.properties;
+  }
+
   public get() {
     const property = this.properties[this.value];
 
     if (property === null || property === undefined) {
-      return null;
+      return this.value;
     }
 
     if (typeof property === "function") {
