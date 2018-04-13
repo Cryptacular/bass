@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: {
     bass: "./src/index.ts",
-    "examples/basic": "./src/examples/basic"
+    "examples/text": "./src/examples/text"
   },
   devtool: "inline-source-map",
   module: {
