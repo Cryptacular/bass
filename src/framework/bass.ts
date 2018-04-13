@@ -1,11 +1,13 @@
-import { BindingFactory, IBinding } from "./bindings/index";
+import { BindingFactory, IBinding, IProperties } from "./bindings/index";
 
 export interface IBassOptions {
+  properties?: IProperties;
   root: string;
 }
 
 export default class Bass {
   private root: HTMLElement;
+  private properties: object;
   private bindings: IBinding[];
 
   constructor(options: IBassOptions) {
@@ -18,6 +20,7 @@ export default class Bass {
       throw new Error("Root element could not be found on the page");
     }
     this.root = root;
+    this.properties = options.properties || {};
     this.parseTemplate();
   }
 
@@ -48,7 +51,11 @@ export default class Bass {
       );
       bassAttributes.forEach(a => {
         bindings.push(
-          BindingFactory.getBinding(a.name, { root: e, value: a.value })
+          BindingFactory.getBinding(a.name, {
+            properties: this.properties,
+            root: e,
+            value: a.value
+          })
         );
       });
     });

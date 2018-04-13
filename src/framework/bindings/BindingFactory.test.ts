@@ -10,6 +10,7 @@ describe("BindingFactory", () => {
     it("throws an error if the binding type does not exist", () => {
       expect(() =>
         BindingFactory.getBinding("some-binding-that-doesnt-exist", {
+          properties: {},
           root: document.createElement("div"),
           value: null
         })
@@ -18,6 +19,7 @@ describe("BindingFactory", () => {
 
     it("returns text binding", () => {
       const binding = BindingFactory.getBinding("bass-text", {
+        properties: {},
         root: document.createElement("div"),
         value: null
       });

@@ -9,6 +9,7 @@ describe("Binding", () => {
     it("creates binding", () => {
       const element = document.createElement("div");
       const options: IBindingOptions = {
+        properties: {},
         root: element,
         value: null
       };
@@ -22,6 +23,7 @@ describe("Binding", () => {
     it("returns root element", () => {
       const element = document.createElement("div");
       const options: IBindingOptions = {
+        properties: {},
         root: element,
         value: null
       };
@@ -31,45 +33,33 @@ describe("Binding", () => {
     });
   });
 
-  describe("getValue", () => {
+  describe("get", () => {
     it("returns correct value", () => {
       const element = document.createElement("div");
       const options: IBindingOptions = {
+        properties: {
+          test: "this is the correct value!"
+        },
         root: element,
-        value: "this is the correct value!"
+        value: "test"
       };
       const binding = new Binding(options);
 
-      expect(binding.getValue()).toBe("this is the correct value!");
-    });
-  });
-
-  describe("setValue", () => {
-    it("changes value", () => {
-      const element = document.createElement("div");
-      const options: IBindingOptions = {
-        root: element,
-        value: "this is the first value!"
-      };
-      const binding = new Binding(options);
-
-      binding.setValue("well, this is the second value though!");
-
-      expect(binding.getValue()).toBe("well, this is the second value though!");
+      expect(binding.get()).toBe("this is the correct value!");
     });
 
-    it("calls render", () => {
+    it("returns correct value if property is a function", () => {
       const element = document.createElement("div");
       const options: IBindingOptions = {
+        properties: {
+          test: () => "this is the return value of a function!"
+        },
         root: element,
-        value: null
+        value: "test"
       };
       const binding = new Binding(options);
-      const renderMock = (binding.render = jest.fn());
 
-      binding.setValue("some new value");
-
-      expect(renderMock.mock.calls.length).toBe(1);
+      expect(binding.get()).toBe("this is the return value of a function!");
     });
   });
 });

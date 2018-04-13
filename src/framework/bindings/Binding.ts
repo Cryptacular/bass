@@ -1,12 +1,16 @@
 export interface IBindingOptions {
   root: HTMLElement;
-  value: any;
+  properties: IProperties;
+  value: string;
+}
+
+export interface IProperties {
+  [property: string]: any;
 }
 
 export interface IBinding {
   getRoot(): HTMLElement;
-  getValue(): any;
-  setValue(value: any): void;
+  get(): any;
   render(): void;
 }
 
@@ -16,24 +20,32 @@ export interface IBindingConstructor {
 
 export class Binding implements IBinding {
   private root: HTMLElement;
-  private value: any;
+  private value: string;
+  private properties: IProperties;
 
   constructor(options: IBindingOptions) {
     this.root = options.root;
-    this.setValue(options.value);
+    this.properties = options.properties;
+    this.value = options.value;
+    this.render();
   }
 
   public getRoot() {
     return this.root;
   }
 
-  public getValue() {
-    return this.value;
-  }
+  public get() {
+    const property = this.properties[this.value];
 
-  public setValue(value: any) {
-    this.value = value;
-    this.render();
+    if (property === null || property === undefined) {
+      return null;
+    }
+
+    if (typeof property === "function") {
+      return property();
+    } else {
+      return property;
+    }
   }
 
   public render() {

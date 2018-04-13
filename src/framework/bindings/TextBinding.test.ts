@@ -10,7 +10,8 @@ describe("Binding", () => {
       const element = document.createElement("div");
       const options: IBindingOptions = {
         root: element,
-        value: "The text of the thingy"
+        properties: { thingy: "The text of the thingy" },
+        value: "thingy"
       };
       const binding = new TextBinding(options);
 
