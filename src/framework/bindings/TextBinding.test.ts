@@ -11,6 +11,7 @@ describe("TextBinding", () => {
       const options: IBindingOptions = {
         root: element,
         properties: { thingy: "The text of the thingy" },
+        computed: {},
         value: "thingy"
       };
       const binding = new TextBinding(options);

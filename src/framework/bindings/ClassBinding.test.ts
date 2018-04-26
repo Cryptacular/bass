@@ -11,6 +11,7 @@ describe("ClassBinding", () => {
       const options: IBindingOptions = {
         root: element,
         properties: { shouldBeTrue: true },
+        computed: {},
         value: "thingy: shouldBeTrue"
       };
       const binding = new ClassBinding(options);
@@ -26,6 +27,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeFalse: false },
+      computed: {},
       value: "thingy: shouldBeFalse"
     };
     const binding = new ClassBinding(options);
@@ -38,6 +40,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeTruthy: "this string evaluates to truthy" },
+      computed: {},
       value: "thingy: shouldBeTruthy"
     };
     const binding = new ClassBinding(options);
@@ -51,6 +54,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeFalsy: 0 },
+      computed: {},
       value: "thingy: shouldBeFalsy"
     };
     const binding = new ClassBinding(options);
@@ -64,6 +68,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeTrue: true },
+      computed: {},
       value: "thingy: shouldBeTrue"
     };
     const binding = new ClassBinding(options);
@@ -77,6 +82,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeFalse: false },
+      computed: {},
       value: "thingy: shouldBeFalse"
     };
 
@@ -88,6 +94,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeTrue: true },
+      computed: {},
       value: ""
     };
 
@@ -99,6 +106,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeTrue: true },
+      computed: {},
       value: "thingy"
     };
 
@@ -110,6 +118,7 @@ describe("ClassBinding", () => {
     const options: IBindingOptions = {
       root: element,
       properties: { shouldBeTrue: true },
+      computed: {},
       value: "shouldBeTrue    :      thingy"
     };
 

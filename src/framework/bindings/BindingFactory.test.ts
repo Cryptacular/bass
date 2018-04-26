@@ -12,6 +12,7 @@ describe("BindingFactory", () => {
         BindingFactory.getBinding("some-binding-that-doesnt-exist", {
           properties: {},
           root: document.createElement("div"),
+          computed: {},
           value: null
         })
       ).toThrow();
@@ -21,6 +22,7 @@ describe("BindingFactory", () => {
       const binding = BindingFactory.getBinding("bass-text", {
         properties: {},
         root: document.createElement("div"),
+        computed: {},
         value: null
       });
       expect(binding).toBeDefined();

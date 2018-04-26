@@ -4,7 +4,8 @@ module.exports = {
   entry: {
     bass: "./src/index.ts",
     "examples/text": "./src/examples/text",
-    "examples/class": "./src/examples/class"
+    "examples/class": "./src/examples/class",
+    "examples/computed": "./src/examples/computed"
   },
   devtool: "inline-source-map",
   module: {

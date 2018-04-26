@@ -1,6 +1,12 @@
-import { BindingFactory, IBinding, IProperties } from "./bindings/index";
+import {
+  BindingFactory,
+  IBinding,
+  IComputed,
+  IProperties
+} from "./bindings/index";
 
 export interface IBassOptions {
+  computed?: IComputed;
   properties?: IProperties;
   root: string;
 }
@@ -8,6 +14,7 @@ export interface IBassOptions {
 export default class Bass {
   private root: HTMLElement;
   private properties: object;
+  private computed: IComputed;
   private bindings: IBinding[];
 
   constructor(options: IBassOptions) {
@@ -21,6 +28,7 @@ export default class Bass {
     }
     this.root = root;
     this.properties = options.properties || {};
+    this.computed = options.computed || {};
     this.parseTemplate();
   }
 
@@ -52,6 +60,7 @@ export default class Bass {
       bassAttributes.forEach(a => {
         bindings.push(
           BindingFactory.getBinding(a.name, {
+            computed: this.computed,
             properties: this.properties,
             root: e,
             value: a.value
