@@ -2,7 +2,7 @@ import { Binding } from "./index";
 
 export class ClassBinding extends Binding {
   public render() {
-    const value = this.get();
+    const value = this.value;
     const values = value && value.split(":");
 
     if (!value || !values || values.length < 2) {

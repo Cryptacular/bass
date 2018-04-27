@@ -1,4 +1,4 @@
-import Bass from "./framework/bass";
+import Bass from "./framework/Bass";
 import "./polyfills";
 
 export default Bass;

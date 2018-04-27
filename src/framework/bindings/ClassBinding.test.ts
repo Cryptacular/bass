@@ -1,4 +1,5 @@
 import { ClassBinding, IBindingOptions } from ".";
+import { MessageBusMock } from "../../mocks";
 
 describe("ClassBinding", () => {
   it("exists", () => {
@@ -12,6 +13,7 @@ describe("ClassBinding", () => {
         root: element,
         properties: { shouldBeTrue: true },
         computed: {},
+        messageBus: new MessageBusMock(),
         value: "thingy: shouldBeTrue"
       };
       const binding = new ClassBinding(options);
@@ -28,6 +30,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeFalse: false },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "thingy: shouldBeFalse"
     };
     const binding = new ClassBinding(options);
@@ -41,6 +44,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeTruthy: "this string evaluates to truthy" },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "thingy: shouldBeTruthy"
     };
     const binding = new ClassBinding(options);
@@ -55,6 +59,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeFalsy: 0 },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "thingy: shouldBeFalsy"
     };
     const binding = new ClassBinding(options);
@@ -69,6 +74,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeTrue: true },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "thingy: shouldBeTrue"
     };
     const binding = new ClassBinding(options);
@@ -83,6 +89,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeFalse: false },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "thingy: shouldBeFalse"
     };
 
@@ -95,6 +102,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeTrue: true },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: ""
     };
 
@@ -107,6 +115,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeTrue: true },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "thingy"
     };
 
@@ -119,6 +128,7 @@ describe("ClassBinding", () => {
       root: element,
       properties: { shouldBeTrue: true },
       computed: {},
+      messageBus: new MessageBusMock(),
       value: "shouldBeTrue    :      thingy"
     };
 

@@ -5,6 +5,8 @@ import {
   IProperties
 } from "./bindings/index";
 
+import { IMessageBus, MessageBus } from "./MessageBus";
+
 export interface IBassOptions {
   computed?: IComputed;
   properties?: IProperties;
@@ -12,8 +14,9 @@ export interface IBassOptions {
 }
 
 export default class Bass {
+  private messageBus: IMessageBus;
   private root: HTMLElement;
-  private properties: object;
+  private properties: any;
   private computed: IComputed;
   private bindings: IBinding[];
 
@@ -29,6 +32,7 @@ export default class Bass {
     this.root = root;
     this.properties = options.properties || {};
     this.computed = options.computed || {};
+    this.messageBus = new MessageBus(this);
     this.parseTemplate();
   }
 
@@ -51,6 +55,15 @@ export default class Bass {
     this.parseBindings(bassChildren);
   }
 
+  public notify(property: string, value: any) {
+    if (this.properties[property] === undefined) {
+      return;
+    }
+
+    this.properties[property] = value;
+    this.bindings.forEach(b => b.render());
+  }
+
   private parseBindings(elements: HTMLElement[]) {
     const bindings: IBinding[] = [];
     elements.forEach(e => {
@@ -61,11 +74,13 @@ export default class Bass {
         bindings.push(
           BindingFactory.getBinding(a.name, {
             computed: this.computed,
+            messageBus: this.messageBus,
             properties: this.properties,
             root: e,
             value: a.value
           })
         );
+        this.messageBus.subscribe(a.value);
       });
     });
 

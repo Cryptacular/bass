@@ -1,4 +1,5 @@
 import { IBindingOptions, TextBinding } from ".";
+import { MessageBusMock } from "../../mocks";
 
 describe("TextBinding", () => {
   it("exists", () => {
@@ -12,6 +13,7 @@ describe("TextBinding", () => {
         root: element,
         properties: { thingy: "The text of the thingy" },
         computed: {},
+        messageBus: new MessageBusMock(),
         value: "thingy"
       };
       const binding = new TextBinding(options);

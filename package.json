@@ -9,6 +9,7 @@
     "build": "webpack --mode=development",
     "watch": "webpack --mode=development --watch",
     "prettier": "prettier 'src/**/*.ts'",
+    "lint": "tslint 'src/**/*.ts'",
     "test": "jest",
     "test-watch": "jest --watch"
   },

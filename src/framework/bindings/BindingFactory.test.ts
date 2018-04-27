@@ -1,3 +1,4 @@
+import { MessageBusMock } from "../../mocks";
 import { BindingFactory } from "./BindingFactory";
 import { TextBinding } from "./TextBinding";
 
@@ -13,6 +14,7 @@ describe("BindingFactory", () => {
           properties: {},
           root: document.createElement("div"),
           computed: {},
+          messageBus: new MessageBusMock(),
           value: null
         })
       ).toThrow();
@@ -23,6 +25,7 @@ describe("BindingFactory", () => {
         properties: {},
         root: document.createElement("div"),
         computed: {},
+        messageBus: new MessageBusMock(),
         value: null
       });
       expect(binding).toBeDefined();

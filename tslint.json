@@ -5,6 +5,11 @@
         "tslint-config-prettier"
     ],
     "jsRules": {},
+    "linterOptions": {
+        "exclude": [
+            "src/polyfills/**/*"
+        ]
+    },
     "rules": {
         "object-literal-sort-keys": false,
         "variable-name": [

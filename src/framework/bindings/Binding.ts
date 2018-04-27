@@ -1,8 +1,11 @@
+import { IMessageBus } from "../MessageBus";
+
 export interface IBindingOptions {
   root: HTMLElement;
   properties: IProperties;
   computed: IComputed;
   value: string;
+  messageBus: IMessageBus;
 }
 
 export interface IProperties {
@@ -15,6 +18,7 @@ export interface IComputed {
 
 export interface IBinding {
   getProperties(): IProperties;
+  setProperty(property: string, value: string): void;
   getRoot(): HTMLElement;
   get(): any;
   render(): void;
@@ -29,6 +33,7 @@ export class Binding implements IBinding {
   private _value: string;
   private properties: IProperties;
   private computed: IComputed;
+  private messageBus: IMessageBus;
 
   get value(): string {
     return this._value;
@@ -40,6 +45,7 @@ export class Binding implements IBinding {
   }
 
   constructor(options: IBindingOptions) {
+    this.messageBus = options.messageBus;
     this.root = options.root;
     this.properties = options.properties;
     this.computed = options.computed;
@@ -55,11 +61,18 @@ export class Binding implements IBinding {
     return this.properties;
   }
 
+  public setProperty(property: string, value: string) {
+    if (this.properties[property] !== undefined) {
+      this.properties[property] = value;
+      this.messageBus.publish(property, value);
+    }
+  }
+
   public get() {
     const property = this.properties[this.value] || this.computed[this.value];
 
     if (property === null || property === undefined) {
-      return this.value;
+      return "";
     }
 
     if (typeof property === "function") {

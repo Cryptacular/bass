@@ -1,5 +1,6 @@
 import Bass, { IBassOptions } from "./bass";
 import { TextBinding } from "./bindings";
+import { MessageBus } from "./MessageBus";
 
 describe("Bass", () => {
   test("exists", () => {
@@ -98,6 +99,47 @@ describe("Bass", () => {
       const bass = new Bass(options);
 
       expect(bass.getRoot()).toEqual(document.getElementById("app"));
+    });
+  });
+
+  describe("notify", () => {
+    it("re-renders all bindings if property exists", () => {
+      document.body.innerHTML = `<div id="app"><span bass-text="hello"></span><span bass-class="is-red: isRed"></span></div>`;
+      const options: IBassOptions = {
+        root: "app",
+        properties: { hello: "world", isRed: true }
+      };
+      const bass = new Bass(options);
+      const bindings = bass.getBindings();
+      const spies = bindings.map(b => spyOn(b, "render"));
+
+      bass.notify("hello", "Jeremy!");
+
+      expect(spies.length).toBe(2);
+      for (const spy of spies) {
+        expect(spy).toHaveBeenCalled();
+      }
+    });
+
+    it("does not re-render all bindings if property doesn't exist", () => {
+      document.body.innerHTML = `<div id="app"><span bass-text="hello"></span><span bass-class="is-red: isRed"></span></div>`;
+      const options: IBassOptions = {
+        root: "app",
+        properties: { hello: "world", isRed: true }
+      };
+      const bass = new Bass(options);
+      const bindings = bass.getBindings();
+      const spies = bindings.map(b => spyOn(b, "render"));
+
+      bass.notify(
+        "something that's not in our properties list!",
+        "whatever, dood"
+      );
+
+      expect(spies.length).toBe(2);
+      for (const spy of spies) {
+        expect(spy).not.toHaveBeenCalled();
+      }
     });
   });
 });

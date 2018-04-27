@@ -5,7 +5,7 @@ module.exports = {
   testRegex: "test.(jsx?|tsx?)$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   collectCoverage: true,
-  coveragePathIgnorePatterns: ["polyfills"],
+  coveragePathIgnorePatterns: ["mocks", "polyfills"],
   coverageThreshold: {
     global: {
       branches: 100,
