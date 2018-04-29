@@ -1,4 +1,4 @@
-import Bass from "./bass";
+import Bass from "./Bass";
 
 export interface IMessageBus {
   subscribe(property: string): void;

@@ -1,4 +1,4 @@
-import Bass, { IBassOptions } from "./bass";
+import Bass, { IBassOptions } from "./Bass";
 import { TextBinding } from "./bindings";
 import { MessageBus } from "./MessageBus";
 

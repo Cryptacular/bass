@@ -1,4 +1,4 @@
-import Bass from "./bass";
+import Bass from "./Bass";
 import { IMessageBus, MessageBus } from "./MessageBus";
 
 let messageBus: IMessageBus;
