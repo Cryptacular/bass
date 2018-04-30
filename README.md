@@ -40,24 +40,24 @@ OMZDDNDD?DNNNNDNM        NNNN   MNNN    NNNM  NNNN       NNNNN:    MNNNNN       
 
 ## Infrastructure
 
-- [ ] Project setup with unit tests and CI build
+- [x] Project setup with unit tests and CI build
 - [ ] UI tests for multiple browsers
   - [ ] Run in CI
 
 ## Template
 
-- [ ] HTML template, bind to text
-- [ ] Bind values and functions
+- [x] HTML template, bind to text
+- [x] Bind values and functions
 - [ ] Bind other types
   - [ ] Lists - foreach
-  - [ ] Input values
+  - [x] Input values
   - [ ] Conditional
-  - [ ] Classes
-- [ ] Two-way binding (getter + setter)
+  - [x] Classes
+- [x] Two-way binding (getter + setter)
 - [ ] Event handling
-- [ ] DOM updates
+- [x] DOM updates
 - [ ] Bind to viewmodel > bind to properties inside that view model
-- [ ] Computed properties
+- [x] Computed properties
 
 ## Framework
 
@@ -66,7 +66,7 @@ OMZDDNDD?DNNNNDNM        NNNN   MNNN    NNNM  NNNN       NNNNN:    MNNNNN       
 - [ ] Shadow DOM - minimal DOM updates
 - [ ] Component lifecycle
 - [ ] Router
-- [ ] Unbinding
+- [ ] Unbinding (esp bindings with event listeners, e.g. Input)
 
 ## Notes
 
