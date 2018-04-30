@@ -72,7 +72,7 @@ export default class Bass {
       );
       bassAttributes.forEach(a => {
         bindings.push(
-          BindingFactory.getBinding(a.name, {
+          BindingFactory.createBinding(a.name, {
             computed: this.computed,
             messageBus: this.messageBus,
             properties: this.properties,
