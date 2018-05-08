@@ -1,4 +1,4 @@
-import { InvisibleBinding, IBindingOptions } from ".";
+import { IBindingOptions, InvisibleBinding } from ".";
 import { MessageBusMock } from "../../mocks";
 
 describe("InvisibleBinding", () => {

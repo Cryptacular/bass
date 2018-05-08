@@ -1,4 +1,4 @@
-import { VisibleBinding, IBindingOptions } from ".";
+import { IBindingOptions, VisibleBinding } from ".";
 import { MessageBusMock } from "../../mocks";
 
 describe("VisibleBinding", () => {
