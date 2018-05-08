@@ -51,7 +51,7 @@ OMZDDNDD?DNNNNDNM        NNNN   MNNN    NNNM  NNNN       NNNNN:    MNNNNN       
 - [ ] Bind other types
   - [ ] Lists - foreach
   - [x] Input values
-  - [ ] Conditional
+  - [x] Conditional
   - [x] Classes
 - [x] Two-way binding (getter + setter)
 - [ ] Event handling

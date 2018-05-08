@@ -6,7 +6,9 @@ module.exports = {
     "examples/text": "./src/examples/text",
     "examples/class": "./src/examples/class",
     "examples/computed": "./src/examples/computed",
-    "examples/input": "./src/examples/input"
+    "examples/input": "./src/examples/input",
+    "examples/visible": "./src/examples/visible",
+    "examples/invisible": "./src/examples/invisible"
   },
   devtool: "inline-source-map",
   module: {
