@@ -11,12 +11,12 @@ export class ClassBinding extends Binding {
 
     const className = values[0].trim();
     const property = values[1].trim();
-    const bool = this.getProperties()[property];
+    const shouldAddClass = this.getProperties()[property];
 
     const root = this.getRoot();
     const rootHasClass = root.classList.contains(className);
 
-    if (bool) {
+    if (shouldAddClass) {
       if (!rootHasClass) {
         root.classList.add(className);
       }

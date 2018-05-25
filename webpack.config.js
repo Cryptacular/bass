@@ -8,7 +8,8 @@ module.exports = {
     "examples/computed": "./src/examples/computed",
     "examples/input": "./src/examples/input",
     "examples/visible": "./src/examples/visible",
-    "examples/invisible": "./src/examples/invisible"
+    "examples/invisible": "./src/examples/invisible",
+    "examples/list": "./src/examples/list"
   },
   devtool: "inline-source-map",
   module: {

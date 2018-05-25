@@ -91,7 +91,7 @@ export default class Bass {
     const out: HTMLElement[] = [];
     elements.forEach(e => {
       const add =
-        e.childElementCount > 0
+        e.childElementCount > 0 && e.getAttribute("bass-for") === null
           ? this.getBassChildren(Array.from(e.children))
           : [e];
       out.push(...add);
